@@ -121,7 +121,6 @@ angular.module("connectusApp")
                 }
               },
     }];
-    console.log($scope.selectedPlaceMarker.coords);
   };
 
   $scope.selectPlace = function(place) {
