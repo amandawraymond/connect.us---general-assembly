@@ -7,7 +7,7 @@ class PlacesController < ActionController::Base
     latitude = params[:latitude] || 33.771112
     longitude = params[:longitude] || -84.367090
     coordinates = { latitude: latitude, longitude: longitude }
-    params = { term: 'free wifi', limit: 10, sort: 1}
+    params = { term: 'free wifi', limit: 10 }
     businesses = Yelp.client.search_by_coordinates(coordinates, params).businesses
     @places = []
     businesses.each do |biz|
