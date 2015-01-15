@@ -1,0 +1,77 @@
+<div id="pagewrap" >
+
+  <div id="content">
+    <form ng-submit="submitForm();">
+      <div class="text-center" >
+        <h3>Connect Group</h3>
+        <table class="table">
+          <tbody>
+            <tr ng-repeat="user in userList" >
+             <td>
+               <input type="checkbox"ng-model="user.selected" >
+             </td>
+             <td><h4>{{user.name}}</h4></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary" ng-click="showPlaces()">Submit</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div id="middle" ng-show="users" class="text-center" ng-hide="selectedPlace">  
+    <div ng-hide="selectedPlace" ng-repeat= "place in placesHash">
+      <button class="btn btn-default btn-places">
+        <div ng-class="{ highlighted: place === selectedPlace }" ng-click="selectPlace(place);">
+          <h4>{{place.name}}</h4>
+        </div>
+      </button>
+    </div>
+  </div> 
+
+
+
+  <div id="middle" class="text-center">
+    <div ng-show="selectedPlace">  
+      <div>
+        <h2>{{selectedPlace.name}}</h2>
+        <p>yelp rating: {{selectedPlace.rating}}</p>
+        <p>{{selectedPlace.summary}}</p>
+        <h3>{{selectedPlace.address}}</h3>
+        <button class="btn btn-primary" ng-click="textAddress(selectedPlace.name, selectedPlace.address)">Text</button>
+        <button class="btn btn-primary" ng-click="clearSelectedPlace();"><a href="">Back</a></button>  
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="sidebar" class="text-center" ng-show="selectedPlace">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
+      <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()">
+          <div>
+          {{marker.name.split(' ')[0]}} {{marker.name.split(' ')[1].split('')[0]}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+      <ui-gmap-marker data-ng-repeat="marker in geolocationMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
+          <div>
+            {{marker.name}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+       <ui-gmap-marker data-ng-repeat="marker in selectedPlaceMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
+          <div>
+            {{marker.name}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+    </ui-gmap-google-map>
+  </div>
+
+
+</div>
