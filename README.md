@@ -1,4 +1,4 @@
-#Amanda Raymond & Chris Markel's GitHub README for [Connect.us](https://connectus-ga.herokuapp.com/)
+#Amanda Raymond & Chris Markel's GitHub README for [Connect.us](https://connectus-generalassembly.herokuapp.com/)
 </br>
 
 ##General Assembly Web Development Immersive (WDI) - Fall 2014, Project 2
